@@ -6,7 +6,7 @@
 #include <QDebug>
 
 Widget::Widget(QWidget *parent)
-    : QWidget(parent), ui(new Ui::Widget), PlayerChange(true)
+    : QWidget(parent), ui(new Ui::Widget), PlayerChange(true), countClickedButton(0)
 {
   ui->setupUi(this);
 
@@ -118,8 +118,17 @@ void Widget::on_button2_2_clicked() {
 }
 
 void Widget::isValidate() {
+  countClickedButton++;
+
   if (isWin()) {
     ui->groupBox->setEnabled(false);
+  } else {
+    if (countClickedButton == 9 && ui->groupBox->isEnabled()) {
+      ui->label->setText("Standoff");
+      ui->groupBox->setEnabled(false);
+      ui->resetButton->setEnabled(true);
+      ui->resetButton->setStyleSheet("* { background-color: rgb(85, 87, 83) }");
+    }
   }
 }
 
@@ -198,6 +207,9 @@ void Widget::on_resetButton_clicked() {
 
   // Reset Label
   ui->label->setText("Player1 VS Player2");
+
+  // Reset CountClickedButton
+  countClickedButton = 0;
 
   // Rest resetButton
   ui->resetButton->setEnabled(false);

@@ -30,6 +30,7 @@ public:
   void isValidate();
   void changeBackButtonColor(std::vector<int> &);
   void setWinPlayer(int);
+  void parregio();
 
 private slots:
   void on_button0_0_clicked();
@@ -65,4 +66,5 @@ private:
 
   std::vector<int> VecMap1;
   std::vector<int> VecMap2;
+  uint countClickedButton;
 };
