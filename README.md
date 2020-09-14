@@ -1,1 +1,1 @@
-# MyMN_game
+# My first QWindgets project
